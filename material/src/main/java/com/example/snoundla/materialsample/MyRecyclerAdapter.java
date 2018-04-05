@@ -29,7 +29,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder viewHolder, int i) {
+    public void onBindViewHolder(final MyViewHolder viewHolder, int i) {
         String item = mItems.get(i);
         viewHolder.mTextView.setText(item);
         viewHolder.mTextView.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +37,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
             public void onClick(View view) {
                 Context context = view.getContext();
                 context.startActivity(new Intent(context, CollapsingToolbarMainActivity.class));
+            }
+        });
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            Context context = viewHolder.itemView.getContext();
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CollapsingToolbarMainActivity.class);
+                context.startActivity(intent);
             }
         });
     }
